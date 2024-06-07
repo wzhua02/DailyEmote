@@ -1,11 +1,18 @@
 import { Alert, View, Text, TextInput, ActivityIndicator, Button, KeyboardAvoidingView } from 'react-native';
-import { styles } from '../../styleSheets/Styles';
+import { globalStyles } from '../../styleSheets/Styles';
 import { useState } from 'react';
 import { FIREBASE_AUTH } from '../../FireBaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigation, useRouter } from 'expo-router';
 
-
+/**
+ * Sign up page of DailyEmote. Prompts user for 
+ * username, email and password, checks whether 
+ * it is valid then forwards the Home page of the 
+ * app. User can navigate back to Sign In page.
+ * 
+ * @Author Boon Kai Ming & Woo Zong Hua
+ */
 const signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -41,24 +48,24 @@ const signup = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.background}>
       <KeyboardAvoidingView behavior="padding">
         
         <TextInput 
           value={username} 
-          style={styles.textInput} 
+          style={globalStyles.textInput} 
           placeholder='Enter Username' 
           onChangeText={(text) => setUsername(text)}/>
 
         <TextInput 
           value={email} 
-          style={styles.textInput} 
+          style={globalStyles.textInput} 
           placeholder='Enter Email' 
           onChangeText={(text) => setEmail(text)}/>
 
         <TextInput 
           value={password} 
-          style={styles.textInput} 
+          style={globalStyles.textInput} 
           placeholder='Enter Password' 
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={true}/>

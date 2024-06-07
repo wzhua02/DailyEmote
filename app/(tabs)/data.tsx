@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
-import { styles } from '../../styleSheets/Styles';
+import { globalStyles } from '../../styleSheets/Styles';
 
 
 const data = () => {
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.background}>
       
     </View>
   )
