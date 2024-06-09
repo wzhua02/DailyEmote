@@ -1,27 +1,19 @@
-import { StyleSheet, SafeAreaView, Text, View, Pressable } from "react-native";
+import { StyleSheet, SafeAreaView, Text, View, Pressable, Modal } from "react-native";
 import { globalStyles } from "../styleSheets/Styles";
 import { AntDesign } from '@expo/vector-icons';
 import { useEffect, useState } from "react";
 import { FIREBASE_DB } from "../FireBaseConfig";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { entryData } from "../app/(tabs)/list";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
-//each diary entry
-/*
-  1. id
-  2. title
-  3. isHappy
-  4. date
-  5. textEntry
-*/
 type EntryProps = {
   item: entryData
   getEntries: () => void
 }
 
-export default function Entry({ item, getEntries }: EntryProps) {
+export default function DisplayEntry({ item, getEntries }: EntryProps) {
   const [isHappy, setIsHappy] = useState(item.isHappy);
+  const [modalVisible, setModalVisible] = useState(false);
   
   const updateIsHappy = async () => {
     const entryRef = doc(FIREBASE_DB, "entries", item.id);
@@ -51,7 +43,19 @@ export default function Entry({ item, getEntries }: EntryProps) {
         )}
       </Pressable>
       {/* Text Entry */}
-      <Text style={entryStyles.text}>{item.title}</Text>
+      <Pressable onPress={() => setModalVisible(true)}>
+        <Text style={entryStyles.text}>{item.title}</Text>
+      </Pressable>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        
+      </Modal>
       {/* Delete Button */}
       <Pressable onPress={deleteEntry}>
         <AntDesign name="delete" size={24} color="black"/>
