@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     marginVertical: 10,
+    backgroundColor: colors.button, //Color: Navy Blue
   },
   roundButton: {
     height: 56,
@@ -63,5 +64,13 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
     backgroundColor: colors.secondaryBackground, //Color: Dark Gray
-  }
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    width: '100%',
+    marginVertical: 15,
+  },
 });

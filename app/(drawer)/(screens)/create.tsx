@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { router } from "expo-router";
 import { styles } from "../../../styleSheets/Styles";
 import HeaderComponent from "../../../components/createEntry/HeaderComponent";
-import TitleInput from "../../../components/createEntry/TitleInput";
 import DateInput from "../../../components/createEntry/DateInput";
+import TitleInput from "../../../components/createEntry/TitleInput";
 import EntryInput from "../../../components/createEntry/EntryInput";
 import AddEntryButton from "../../../components/createEntry/AddEntryButton";
+import AddEntryComponents from "../../../components/createEntry/AddEntryComponents";
+
 
 const create = () => {
   const [title, setTitle] = useState("");
@@ -26,19 +28,22 @@ const create = () => {
   };
 
   return (
-    <SafeAreaView style={styles.overlay}>
-      <View style={addEntryStyles.headerContainer}>
+    <SafeAreaView style={[styles.overlay, {justifyContent: "flex-start",}]}>
+      <View style={styles.headerContainer}>
         <HeaderComponent goBack={goBack}/>
       </View>
-      <View style={addEntryStyles.inputContainer}>
-        <TitleInput text={title} setText={setTitle}/>
+      
+      <View style={{width: "100%"}}>
+      <AddEntryComponents 
+        dateString={dateString} 
+        setDateString={setDateString} 
+        title={title} 
+        setTitle={setTitle} 
+        textEntry={textEntry} 
+        setTextEntry={setTextEntry}
+      />
       </View>
-      <View style={addEntryStyles.inputContainer}>
-        <DateInput text={dateString} setText={setDateString}/>
-      </View>
-      <View style={addEntryStyles.inputContainer}>
-        <EntryInput text={textEntry} setText={setTextEntry}/>
-      </View>
+      
       <View style={addEntryStyles.buttonContainer}>
         <AddEntryButton 
           title={title} 
@@ -55,20 +60,23 @@ const create = () => {
 export default create;
 
 const addEntryStyles = StyleSheet.create({
-  headerContainer: {
+  boxComponent: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
     width: '100%',
-    marginVertical: 15,
   },
   inputContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 1,
-    marginVertical: 0,
-    width: "100%",
+    padding: 10,
+    marginVertical: 10,
+    flex: 2,
+  },
+  entryContainer: {
+    padding: 10,
+    marginVertical: 10,
+    height: 300,
+    width: '100%',
   },
   buttonContainer: {
     justifyContent: "center",

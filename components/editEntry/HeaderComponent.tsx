@@ -14,7 +14,7 @@ export default function HeaderComponent({ goBack }: HeaderProps) {
       >
         <Ionicons name="arrow-back" size={24} color={colors.primary} />
       </TouchableOpacity>
-      <Text style={headerStyles.headerText}>Add Entry</Text>
+      <Text style={headerStyles.headerText}>Edit Entry</Text>
     </View>
   )
 }

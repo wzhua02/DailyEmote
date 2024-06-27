@@ -1,7 +1,7 @@
 import { StyleSheet, SafeAreaView, Text, View, Pressable, Modal, Touchable, TouchableOpacity } from "react-native";
 import { colors, styles } from "../../../styleSheets/Styles";
 import { AntDesign } from '@expo/vector-icons';
-import React from "react";
+import React, { useEffect } from "react";
 import { router } from "expo-router";
 import { deleteDoc, doc } from "firebase/firestore";
 import { FIREBASE_DB } from "../../../FireBaseConfig";
@@ -19,26 +19,11 @@ export default function DisplayEntry({ item, closeModal, reload }: EntryProps) {
 
   const enableViewFull = () => {
     closeModal();
-    router.push({
+    console.log("Pushing Document: ", item.id);
+    router.navigate({
       pathname: '../(others)/viewEntryFull',
       params: {
         id: item.id,
-        title: item.title,
-        textEntry: item.textEntry,
-        date: formatDate(),
-      },
-    });
-  };
-
-  const editEntry = () => {
-    closeModal();
-    router.push({
-      pathname: '../(others)/editEntry',
-      params: {
-        id: item.id,
-        title: item.title,
-        textEntry: item.textEntry,
-        date: formatDate(),
       },
     });
   };
@@ -49,6 +34,10 @@ export default function DisplayEntry({ item, closeModal, reload }: EntryProps) {
     reload();
   };
 
+  useEffect(() => {
+    console.log('Entry updated:', item.id);
+  }, [item]);
+
   return (
     <View style={entryStyles.entry}>
       <TouchableOpacity style={{ flexDirection: "row", flex: 1 }} onPress={enableViewFull}>
@@ -58,10 +47,7 @@ export default function DisplayEntry({ item, closeModal, reload }: EntryProps) {
           </Text>
           <Text style={entryStyles.text}>{item.textEntry}</Text>
         </View>
-        <View style={[entryStyles.icons, { flex: 0.3 }]}>
-          <Pressable onPress={editEntry}>
-            <AntDesign name="edit" size={24} color={colors.primary} />
-          </Pressable>
+        <View style={[entryStyles.icons, { flex: 0.15 }]}>
           <Pressable onPress={handleDeleteButton}>
             <AntDesign name="delete" size={24} color={colors.primary} />
           </Pressable>

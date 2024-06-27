@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 import { textInputProps } from '../../types/Types'
-import { colors } from '../../styleSheets/Styles'
+import { colors, styles } from '../../styleSheets/Styles'
 
 export default function EntryInput({ text, setText }: textInputProps) {
   return (
@@ -12,7 +12,7 @@ export default function EntryInput({ text, setText }: textInputProps) {
         value={text}
         onChangeText={(text) => setText(text)}
         multiline={true}
-        numberOfLines={4}
+        numberOfLines={6}
       />
     </View>
   )
@@ -26,9 +26,8 @@ const entryInputStyles = StyleSheet.create({
   },
   inputBox: {
     padding: 10,
-    borderRadius: 4,
-    width: "90%",
-    marginVertical: 10,
+    borderRadius: 10,
+    width: "100%",
     backgroundColor: colors.contrastBackground, //Color: Dark Gray
   },
   text: {

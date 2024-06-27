@@ -39,8 +39,46 @@ export type EntryProps = {
   reload: () => void,
 }
 
+//Props for HeaderComponent
+export type HeaderProps = {
+  goBack: () => void;
+}
+
+//Props for HeaderComponent for ViewEntry
+export type ViewHeaderProps = {
+  goBack: () => void;
+  goEdit: () => void;
+}
+
 //Props for titleInput, textEntryInput
 export type textInputProps = {
   text: string,
   setText: (text: string) => void,
+}
+
+//Props for AddEntryButton
+export type AddEntryButtonProps = {
+  title: string;
+  dateString: string;
+  textEntry: string;
+  resetAll: () => void;
+}
+
+//Props for AddEntryButton
+export type EditEntryButtonProps = {
+  id: string;
+  title: string;
+  dateString: string;
+  textEntry: string;
+  resetAll: () => void;
+}
+
+//Props for AddEntryComponents
+export type AddEntryProps = {
+  dateString: string,
+  setDateString: React.Dispatch<React.SetStateAction<string>>,
+  title: string,
+  setTitle: React.Dispatch<React.SetStateAction<string>>,
+  textEntry: string,
+  setTextEntry: React.Dispatch<React.SetStateAction<string>>,
 }

@@ -3,29 +3,30 @@ import React, { useState } from 'react'
 import DateTimePickerAndroid, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import { colors } from '../../styleSheets/Styles';
+import { colors, styles } from '../../styleSheets/Styles';
 import { textInputProps } from '../../types/Types';
 
 export default function DateInput({ text, setText }: textInputProps) {  
   const [dateModal, setDateModal] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState<Date>(new Date());
 
   const onDateChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (event.type === "dismissed") {
       setDateModal(!dateModal);
       return;
     } else if (event.type === "set") {
-      const currentDate = selectedDate || date;
+      const defaultDate = new Date();
+      const currentDate = selectedDate || defaultDate;
       setDate(currentDate);
       setDateModal(!dateModal);
       console.log("Date selected: ", currentDate);
       const year: string = currentDate.getFullYear().toString();
       const month: string =
         currentDate.getMonth() + 1 < 10
-          ? "0" + (date.getMonth() + 1)
+          ? "0" + (currentDate.getMonth() + 1)
           : (currentDate.getMonth() + 1).toString();
       const day: string =
-        currentDate.getDate() < 10 ? "0" + date.getDate() : date.getDate().toString();
+        currentDate.getDate() < 10 ? "0" + currentDate.getDate() : currentDate.getDate().toString();
       setText(year + "-" + month + "-" + day);
       console.log("Date set: ", text);
     }
@@ -53,7 +54,7 @@ export default function DateInput({ text, setText }: textInputProps) {
           style={dateStyles.text}
           editable={false}
         >
-          Date: {date.toDateString()}
+          {date.toDateString()}
         </TextInput>
       </Pressable>
     </View>
@@ -65,12 +66,12 @@ const dateStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    flexDirection: "row",
   },
   pressable: {
     padding: 10,
-    borderRadius: 4,
-    width: "90%",
-    marginVertical: 10,
+    borderRadius: 10,
+    flex: 2,
     backgroundColor: colors.contrastBackground, //Color: Dark Gray
   },
   text: {

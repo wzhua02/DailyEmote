@@ -4,15 +4,10 @@ import { colors, styles } from '../../styleSheets/Styles'
 import { addDoc, collection } from 'firebase/firestore';
 import { FIREBASE_DB } from '../../FireBaseConfig';
 import { router } from 'expo-router';
+import { AddEntryButtonProps } from '../../types/Types';
 
-type AddEntryProps = {
-  title: string;
-  dateString: string;
-  textEntry: string;
-  resetAll: () => void;
-}
 
-export default function AddEntryButton({ title, dateString, textEntry, resetAll }: AddEntryProps) {
+export default function AddEntryButton({ title, dateString, textEntry, resetAll }: AddEntryButtonProps) {
  
   const handleAddEntry = async () => {
     console.log("Add Entry Button Pressed");
@@ -39,17 +34,11 @@ export default function AddEntryButton({ title, dateString, textEntry, resetAll 
   return (
     <View>
       <Pressable 
-        style={[styles.button, addEntryButtonStyles.button]}
+        style={styles.button}
         onPress={handleAddEntry}
       >
-        <Text style={styles.blackText}>Add Entry</Text>
+        <Text style={styles.whiteText}>Add Entry</Text>
       </Pressable>
     </View>
   );
 }
-
-const addEntryButtonStyles = StyleSheet.create({
-  button: {
-    backgroundColor: colors.button
-  },
-});

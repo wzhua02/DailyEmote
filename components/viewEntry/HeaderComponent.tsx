@@ -3,13 +3,9 @@ import React from 'react'
 import { colors, styles } from '../../styleSheets/Styles';
 import { router } from 'expo-router';
 import { Ionicons } from "@expo/vector-icons";
+import { ViewHeaderProps } from '../../types/Types';
 
-type HeaderProps = {
-  goBack: () => void;
-  goEdit: () => void;
-}
-
-export default function HeaderComponent({ goBack, goEdit }: HeaderProps) {
+export default function HeaderComponent({ goBack, goEdit }: ViewHeaderProps) {
   return (
     <View style={headerStyles.headerContainer}>
       <TouchableOpacity 
