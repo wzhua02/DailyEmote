@@ -5,11 +5,11 @@ import DateTimePicker, {
 import React, { useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import { FIREBASE_DB } from "../../../FireBaseConfig";
-import { colors, styles } from "../../../styleSheets/Styles";
-import HeaderComponent from "../../../components/editEntry/HeaderComponent";
-import AddEntryComponents from "../../../components/createEntry/AddEntryComponents";
-import EditEntryButton from "../../../components/editEntry/EditEntryButton";
+import { FIREBASE_DB } from "../../FireBaseConfig";
+import { colors, styles } from "../../styleSheets/Styles";
+import HeaderComponent from "../../components/editEntry/HeaderComponent";
+import AddEntryComponents from "../../components/createEntry/AddEntryComponents";
+import EditEntryButton from "../../components/editEntry/EditEntryButton";
 
 type Params = {
   id: string;

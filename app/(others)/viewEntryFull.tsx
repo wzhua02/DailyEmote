@@ -1,12 +1,12 @@
 import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import { colors, styles } from "../../../styleSheets/Styles";
+import { colors, styles } from "../../styleSheets/Styles";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
-import HeaderComponent from "../../../components/viewEntry/HeaderComponent";
-import ViewEntryComponent from "../../../components/viewEntry/ViewEntryComponent";
+import HeaderComponent from "../../components/viewEntry/HeaderComponent";
+import ViewEntryComponent from "../../components/viewEntry/ViewEntryComponent";
 import { doc, getDoc } from "firebase/firestore";
-import { FIREBASE_DB } from "../../../FireBaseConfig";
+import { FIREBASE_DB } from "../../FireBaseConfig";
 
 export default function viewEntryFull() {
   const { id } = useLocalSearchParams();

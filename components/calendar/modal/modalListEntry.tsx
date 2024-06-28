@@ -21,7 +21,7 @@ export default function DisplayEntry({ item, closeModal, reload }: EntryProps) {
     closeModal();
     console.log("Pushing Document: ", item.id);
     router.navigate({
-      pathname: '../(others)/viewEntryFull',
+      pathname: '../../(others)/viewEntryFull',
       params: {
         id: item.id,
       },
