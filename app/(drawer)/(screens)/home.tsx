@@ -4,6 +4,10 @@ import { colors, styles } from "../../../styleSheets/Styles";
 import { useEffect, useState } from "react";
 import CalendarComponent from "../../../components/calendar/CalendarComponent";
 import ModalComponent from "../../../components/calendar/ModalComponent";
+import React from "react";
+import CardsListComponent from "../../../components/quickScroll/CardsListComponent";
+import { readDateEntry } from "../../../utils/FireBaseHandler";
+import { entryData } from "../../../types/Types";
 
 /**
  * The `homeV2` function in TypeScript React sets up a calendar view with a modal that can be opened
@@ -13,15 +17,20 @@ import ModalComponent from "../../../components/calendar/ModalComponent";
 const homeV2 = () => {
   const [selectedDate, setSelectedDate] = useState<string>(""); //Format: "YYYY-MM-DD"
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [data, setData] = useState<entryData[]>([]);
 
-  const openModal = () => {
-    setModalVisible(true);
-    console.log("Modal opened");
-  };
+  // const openModal = () => {
+  //   setModalVisible(true);
+  //   console.log("Modal opened");
+  // };
 
-  const closeModal = () => {
-    setModalVisible(false);
-    console.log("Modal closed");
+  // const closeModal = () => {
+  //   setModalVisible(false);
+  //   console.log("Modal closed");
+  // };
+
+  const fetchData = async () => {
+    await readDateEntry(selectedDate, setData);
   };
 
   return (
@@ -32,9 +41,13 @@ const homeV2 = () => {
         <CalendarComponent 
           selectedDate={selectedDate} 
           setSelectedDate={setSelectedDate} 
-          openModal={openModal}
+          openModal={fetchData}
         />
-        {/* Modal */}
+        <View style={homeV2_Styles.cardslistContainer}>
+          <CardsListComponent {...data}/>
+        </View>
+
+        {/* Modal
         <Modal
           animationType="slide"
           transparent={true}
@@ -51,7 +64,8 @@ const homeV2 = () => {
               </TouchableWithoutFeedback>
             </View>
           </TouchableWithoutFeedback>
-        </Modal>
+        </Modal> */}
+
       </View>
     </View>
   );
@@ -65,6 +79,15 @@ const homeV2_Styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     width: "90%",
+  },
+  cardslistContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: colors.background,
+    alignSelf: "center",
+    marginTop: 20,
+    paddingLeft: 7,
   },
   modalOverlay: {
     flex: 1,
