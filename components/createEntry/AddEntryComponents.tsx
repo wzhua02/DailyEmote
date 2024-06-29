@@ -23,7 +23,7 @@ export default function AddEntryComponents({ dateString, setDateString, title, s
         </View>
       </View>
 
-      <View style={[addEntryStyles.boxComponent, {flexDirection: "column"}]}>
+      <View style={[addEntryStyles.boxComponent, {flexDirection: "column",}]}>
         <Text style={styles.whiteText}>Description: </Text>
         <View style={addEntryStyles.entryContainer}>
         <EntryInput text={textEntry} setText={setTextEntry}/>
@@ -49,7 +49,7 @@ const addEntryStyles = StyleSheet.create({
   entryContainer: {
     padding: 10,
     marginVertical: 10,
-    height: 300,
+    height: 200,
     width: '100%',
   },
   buttonContainer: {

@@ -19,15 +19,15 @@ const homeV2 = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [data, setData] = useState<entryData[]>([]);
 
-  // const openModal = () => {
-  //   setModalVisible(true);
-  //   console.log("Modal opened");
-  // };
+  const openModal = () => {
+    setModalVisible(true);
+    console.log("Modal opened");
+  };
 
-  // const closeModal = () => {
-  //   setModalVisible(false);
-  //   console.log("Modal closed");
-  // };
+  const closeModal = () => {
+    setModalVisible(false);
+    console.log("Modal closed");
+  };
 
   const fetchData = async () => {
     await readDateEntry(selectedDate, setData);
@@ -41,13 +41,13 @@ const homeV2 = () => {
         <CalendarComponent 
           selectedDate={selectedDate} 
           setSelectedDate={setSelectedDate} 
-          openModal={fetchData}
+          openModal={openModal}
         />
-        <View style={homeV2_Styles.cardslistContainer}>
+        {/* <View style={homeV2_Styles.cardslistContainer}>
           <CardsListComponent {...data}/>
-        </View>
+        </View> */}
 
-        {/* Modal
+        {/* Modal */}
         <Modal
           animationType="slide"
           transparent={true}
@@ -64,7 +64,7 @@ const homeV2 = () => {
               </TouchableWithoutFeedback>
             </View>
           </TouchableWithoutFeedback>
-        </Modal> */}
+        </Modal>
 
       </View>
     </View>

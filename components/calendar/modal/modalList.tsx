@@ -21,9 +21,9 @@ export default function modalList({ selectedDate, closeModal }: modalContentProp
   /**
    * Function to load entries
    */
-  const loadEntries = async () => {
+  const loadEntries = () => {
     setLoading(true);
-    await readDateEntry(selectedDate, setEntries);
+    readDateEntry(selectedDate, setEntries);
     console.log("ran readDateEntry");
     setLoading(false);
   };

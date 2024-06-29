@@ -7,6 +7,7 @@ import { entryData } from '../../types/Types';
 export default function CardsListComponent(data: entryData[]) {
 
   console.log("Inside flatlist: ", data);
+  
   return (
     <View>
        <FlatList     // KME for Cards to display 
@@ -17,6 +18,12 @@ export default function CardsListComponent(data: entryData[]) {
             showsHorizontalScrollIndicator = {false}
             keyExtractor={i => i.id}
             renderItem={({item}) => {
+              console.log("Title: ", item.title);
+              console.log("Text: ", item.textEntry);
+              console.log("Day: ", item.day);
+              console.log("Month: ", item.month);
+              console.log("Year: ", item.year);
+
               return (
                 <View style ={{ width: 300 }}>
                 <Card containerStyle = {{height: 265}}>

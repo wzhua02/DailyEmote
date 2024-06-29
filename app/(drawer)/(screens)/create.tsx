@@ -33,25 +33,26 @@ const create = () => {
         <HeaderComponent goBack={goBack}/>
       </View>
       
-      <View style={{width: "100%"}}>
-      <AddEntryComponents 
-        dateString={dateString} 
-        setDateString={setDateString} 
-        title={title} 
-        setTitle={setTitle} 
-        textEntry={textEntry} 
-        setTextEntry={setTextEntry}
-      />
-      </View>
-      
-      <View style={addEntryStyles.buttonContainer}>
+      <View style={{width: "100%",}}>
+        <AddEntryComponents 
+          dateString={dateString} 
+          setDateString={setDateString} 
+          title={title} 
+          setTitle={setTitle} 
+          textEntry={textEntry} 
+          setTextEntry={setTextEntry}
+        />
+        <View style={addEntryStyles.buttonContainer}>
         <AddEntryButton 
           title={title} 
           dateString={dateString} 
           textEntry={textEntry} 
           resetAll={resetAll}
         />
+        </View>
       </View>
+      
+      
 
     </SafeAreaView>
   );
